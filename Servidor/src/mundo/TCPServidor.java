@@ -15,18 +15,13 @@ public class TCPServidor {
 		}
 	}
 	
-	public TCPServidor() throws IOException {
-		String fraseCliente;
-		String fraseMayuscula;
+	public TCPServidor() throws Exception {
 		ServerSocket socketAcogida = new ServerSocket(9999);
 		
 		while(true){
 			Socket socketConxion = socketAcogida.accept();
-			BufferedReader entradaDesdeCliente = new BufferedReader(new InputStreamReader(socketConxion.getInputStream()));
-			DataOutputStream salidaACliente = new DataOutputStream(socketConxion.getOutputStream());
-			fraseCliente = entradaDesdeCliente.readLine();
-			fraseMayuscula = fraseCliente.toUpperCase() + '\n' ;
-			salidaACliente.writeBytes(fraseMayuscula);
+			
+			Connection nueva = new Connection(socketConxion);
 		}
 	}
 	
