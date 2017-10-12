@@ -26,7 +26,7 @@ public class ServidorUDP {
 			
 			int puerto = recibirPaquete.getPort();
 			
-			String fraseMayuscula = frase.toUpperCase();
+			String fraseMayuscula = "HOLA "+frase;
 			
 			enviarDatos = fraseMayuscula.getBytes();
 			
