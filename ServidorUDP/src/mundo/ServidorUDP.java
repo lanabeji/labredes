@@ -4,6 +4,9 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.util.Date;
+
+import java.sql.Timestamp;
 
 public class ServidorUDP {
 
@@ -26,9 +29,22 @@ public class ServidorUDP {
 			
 			int puerto = recibirPaquete.getPort();
 			
-			String fraseMayuscula = "HOLA "+frase;
+			String[] fraseN = frase.split(";");
 			
-			enviarDatos = fraseMayuscula.getBytes();
+			String fraseNumero = fraseN[0];
+			
+			Timestamp marcaTiempoPaquete = Timestamp.valueOf(fraseN[1]);
+			//System.out.println("Marca tiempo paquete: "+marcaTiempoPaquete);
+			long miliSegundos = marcaTiempoPaquete.getTime();
+			
+			Timestamp marcaTiempoActual = new Timestamp(System.currentTimeMillis());
+			//System.out.println("Marca tiempo actual: "+marcaTiempoActual);
+			long mseg = marcaTiempoActual.getTime();
+			
+			String paraEnviar = fraseNumero+" : "+ (mseg - miliSegundos) +"ms";
+			
+			enviarDatos = paraEnviar.getBytes();
+
 			
 			DatagramPacket enviarPaquete = new DatagramPacket(enviarDatos, enviarDatos.length,DireccionIP,puerto);
 			
