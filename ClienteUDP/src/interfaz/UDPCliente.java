@@ -11,6 +11,7 @@ import mundo.ClienteUDP;
 public class UDPCliente extends JFrame {
 	
 	private PanelPrincipal panelPrincipal;
+	private ClienteUDP udpCliente;
 	
 	
 	public UDPCliente(){
@@ -33,10 +34,23 @@ public class UDPCliente extends JFrame {
 		JFrame frame = new JFrame("JOptionPane showMessageDialog example");
 		 JOptionPane.showMessageDialog(frame,
 			        "Información enviada",
-			        "Backup problem",
+			        "Información",
 			        JOptionPane.INFORMATION_MESSAGE);
 		 
 		 panelPrincipal.vaciarCampos();
+		 int cant = Integer.parseInt(obj);
+		 try {
+			udpCliente = new ClienteUDP(dir, puerto, cant);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			JFrame frame1 = new JFrame("JOptionPane showMessageDialog example");
+			 JOptionPane.showMessageDialog(frame1,
+				        "Error al leer los datos",
+				        "Error",
+				        JOptionPane.ERROR_MESSAGE);
+		}
+		 
 	}
 	
 	public static void main(String[] args) {

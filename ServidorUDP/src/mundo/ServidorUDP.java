@@ -2,6 +2,7 @@ package mundo;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -14,6 +15,11 @@ public class ServidorUDP {
 
 	public static void main(String[] args) throws Exception {
 
+		inicio();
+	}
+	
+	public static void inicio() throws Exception{
+		
 		DatagramSocket socketServidor = new DatagramSocket(9999);
 
 		byte[] recibirDatos = new byte[1024];
@@ -22,15 +28,15 @@ public class ServidorUDP {
 		String prueba = "./data/prueba.txt";
 		PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(prueba)),true);
 		
+		comenzarComunicacion(socketServidor, recibirDatos, enviarDatos, pw);
+	}
+	
+	public static void comenzarComunicacion(DatagramSocket socketServidor, byte[] recibirDatos, byte[] enviarDatos,PrintWriter pw) throws Exception{
 		
-		//pw.close();
-		
-
 		while(true){
-			
-		
 
 			DatagramPacket recibirPaquete = new DatagramPacket(recibirDatos, recibirDatos.length);
+			
 
 			socketServidor.receive(recibirPaquete);
 
@@ -62,10 +68,7 @@ public class ServidorUDP {
 
 			socketServidor.send(enviarPaquete);
 		}
-	}
-	
-	
-	public void escribirArchivo(){
+		
 		
 	}
 

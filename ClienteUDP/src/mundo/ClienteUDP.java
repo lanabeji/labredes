@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.SocketException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
@@ -13,7 +14,7 @@ public class ClienteUDP {
 	private ArrayList<Objeto> paquetes;
 	
 	
-	public ClienteUDP(int cant){
+	public ClienteUDP(String dir, String puerto, int cant) throws Exception{
 		
 		paquetes = new ArrayList<Objeto>();
 		
@@ -22,30 +23,17 @@ public class ClienteUDP {
 			paquetes.add(actual);
 			System.out.println("En el constructor: "+ i +" "+actual.getFechaCreacion());
 		}
-	}
-	
-	private ArrayList<Objeto> darPaquetes(){
-		return paquetes;
-	}
-	
-	public static void main(String args[]) throws Exception{
-		
-		//new ClienteUDP(2);
-		
-		BufferedReader entradaDesdeUsuario = new BufferedReader(new InputStreamReader(System.in));
 		
 		DatagramSocket socketCliente = new DatagramSocket();
 		
-		InetAddress DireccionIP = InetAddress.getByName("localhost");
+		InetAddress DireccionIP = InetAddress.getByName(dir);
 		
 		byte[] enviarDatos = new byte[1024];
 		byte[] recibirDatos = new byte[1024];
 		
-		ClienteUDP cliente = new ClienteUDP(5);
-		
-		for (int i = 0; i < cliente.darPaquetes().size(); i++) {
+		for (int i = 0; i < this.darPaquetes().size(); i++) {
 			
-			Objeto actual = cliente.darPaquetes().get(i);
+			Objeto actual = this.darPaquetes().get(i);
 			int num = actual.getNumSecuencia();
 			Timestamp tim = actual.getFechaCreacion();
 			
@@ -53,8 +41,9 @@ public class ClienteUDP {
 			
 			enviarDatos = frase.getBytes();
 			
+			int port = Integer.parseInt(puerto);
 			
-			DatagramPacket enviarPaquete = new DatagramPacket(enviarDatos, enviarDatos.length, DireccionIP, 9999);
+			DatagramPacket enviarPaquete = new DatagramPacket(enviarDatos, enviarDatos.length, DireccionIP, port);
 			
 			socketCliente.send(enviarPaquete);
 			
@@ -66,10 +55,16 @@ public class ClienteUDP {
 			
 			System.out.println("DEL SERVIDOR: " + fraseModificada);
 			
-		}
-		
+		}	
 		socketCliente.close();
-
 	}
+	
+	private ArrayList<Objeto> darPaquetes(){
+		return paquetes;
+	}
+	
+//	public static void main(String args[]) throws Exception{
+//
+//	}
 
 }
