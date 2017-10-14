@@ -72,6 +72,8 @@ public class PanelPrincipal extends JPanel implements ActionListener{
 		add(numObj);
 		
 		add(new JLabel(""));
+		add(new JLabel(""));
+		add(new JLabel(""));
 		
 		enviar = new JButton(ENVIAR);
 		enviar.addActionListener(this);
@@ -80,11 +82,25 @@ public class PanelPrincipal extends JPanel implements ActionListener{
 		
 	}
 
-
+	public void vaciarCampos(){
+		dir.setText("");
+		port.setText("");
+		numObj.setText("");
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		
+		String comando = e.getActionCommand();
+		if(comando.equals(ENVIAR)){
+			
+			String direccion = dir.getText();
+			String puertoS = port.getText();
+			String objetos = numObj.getText();
+			
+			principal.enviarParametros(direccion, puertoS, objetos);
+		}
 		
 	}
 	
