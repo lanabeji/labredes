@@ -55,50 +55,34 @@ public class ServidorUDP {
 			
 			String paraEnviar = fraseNumero+" : "+ (mseg - miliSegundos) +"ms";
 			enviarDatos = paraEnviar.getBytes();
-			String arch = "DireccionIP: " + DireccionIP + ", archivo: " + fraseN[2] + ", paquete numero "+ fraseN[0] 
-					+ " de un total de " + fraseN[1] + ", tiempo: " + paraEnviar;
+			String arch = "DireccionIP: " + DireccionIP + ", Archivo: " + fraseN[2] + ", Paquete numero "+ fraseN[0] 
+					+ " de un total de " + fraseN[1] + ", Tiempo: " + (mseg - miliSegundos) + " ms";
 						
 			DatagramPacket enviarPaquete = new DatagramPacket(enviarDatos, enviarDatos.length,DireccionIP,puerto);
 			socketServidor.send(enviarPaquete);
 			
+			
 			String dirIP = ""+DireccionIP;
 			String[] nDirIP = dirIP.split("/");
-			String ruta = "./data/"+nDirIP[1]+";"+fraseN[2]+".txt";
-			ArrayList ar = new ArrayList<>();
+			String ruta = "./data/IP_"+nDirIP[1]+";Archivo_"+fraseN[2]+".txt";
+									
+			PrintWriter pw = new PrintWriter(new FileWriter(ruta, true));
+			pw.println(arch);
+			pw.close();
 			
-			File file = new File(ruta); 
+			String ruta2 = "./data/IP_"+nDirIP[1]+";Archivo_"+fraseN[2]+";est.txt";
+			File file = new File(ruta2); 
 			if(file.exists()){
-				BufferedReader br = new BufferedReader(new FileReader(ruta));			
-				String line = "";				
-				while((line = br.readLine())!=null){
-					ar.add(line);
-				}
-				br.close();
-			}
-			
-			BufferedWriter bw= new BufferedWriter(new FileWriter(ruta));
-			if(ar.size()>0){
-				bw.write( (String) ar.get(0));
-				bw.flush();				
-				if(ar.size()>1){
-					for(int i=1; i<ar.size();i++){
-						bw.newLine();
-						bw.write( (String) ar.get(i));
-						bw.flush();
-					}
-				}					
-				bw.newLine();
-				bw.write(arch);
-				bw.flush();
+				
 			}
 			else{
-				bw.write(arch);
-				bw.flush();
+				PrintWriter pw2 = new PrintWriter(new FileWriter(ruta2));
+				pw2.println("Numero parquetes:" + 1 + "; Total Paquetes:" + fraseN[1] + "; Tiempo Promedio:" + (mseg - miliSegundos) + "(ms)");
+				pw2.close();
 			}
-			bw.close();
 			
-		}
-				
-	}
+		}		
+		
+	}	
 	
 }
