@@ -7,34 +7,50 @@ public class Objeto {
 
 	private int numSecuencia;
 	
-	private Timestamp fechaCreacion;
-
+	private int total;
 	
-	public Objeto(int numSecuencia, Timestamp fechaCreacion) {
+	private long tiempoArchivo;
+	
+	private Timestamp fechaCreacion;
+	
+	public Objeto(int numSecuencia, int total, long tiempoArchivo, Timestamp fechaCreacion) {
 		super();
 		this.numSecuencia = numSecuencia;
+		this.total = total;
+		this.tiempoArchivo = tiempoArchivo;
 		this.fechaCreacion = fechaCreacion;
 	}
-
 
 	public int getNumSecuencia() {
 		return numSecuencia;
 	}
 
-
 	public void setNumSecuencia(int numSecuencia) {
 		this.numSecuencia = numSecuencia;
 	}
-
 
 	public Timestamp getFechaCreacion() {
 		return fechaCreacion;
 	}
 
-
 	public void setFechaCreacion(Timestamp fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
 	
+	public int getTotal(){
+		return total;
+	}
+	
+	public void setTotal(int total){
+		this.total = total;
+	}
+	
+	public long getTiempoArchivo(){
+		return tiempoArchivo;
+	}
+	
+	public void setTiempoArchivo(long tiempoArchivo){
+		this.tiempoArchivo = tiempoArchivo;
+	}
 	
 }

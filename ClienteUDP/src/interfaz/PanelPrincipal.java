@@ -17,8 +17,7 @@ import javax.swing.border.EtchedBorder;
 public class PanelPrincipal extends JPanel implements ActionListener{
 	
 	private UDPCliente principal;
-	
-	
+		
 	private JLabel dirIp;
 	private JTextField dir;
 	
@@ -33,7 +32,6 @@ public class PanelPrincipal extends JPanel implements ActionListener{
 	private static final String ENVIAR = "Enviar";
 	
 	public PanelPrincipal(UDPCliente pr){
-		
 		principal = pr;
 		
 		setLayout(new GridLayout(8,2));
@@ -79,7 +77,6 @@ public class PanelPrincipal extends JPanel implements ActionListener{
 		enviar.addActionListener(this);
 		enviar.setActionCommand(ENVIAR);
 		add(enviar);
-		
 	}
 
 	public void vaciarCampos(){
@@ -90,8 +87,6 @@ public class PanelPrincipal extends JPanel implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
 		String comando = e.getActionCommand();
 		if(comando.equals(ENVIAR)){
 			
@@ -101,8 +96,6 @@ public class PanelPrincipal extends JPanel implements ActionListener{
 			
 			principal.enviarParametros(direccion, puertoS, objetos);
 		}
-		
 	}
-	
-	
+		
 }
