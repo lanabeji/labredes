@@ -70,14 +70,36 @@ public class ServidorUDP {
 			pw.println(arch);
 			pw.close();
 			
-			String ruta2 = "./data/IP_"+nDirIP[1]+";Archivo_"+fraseN[2]+";est.txt";
+			String ruta2 = "./data/IP_"+nDirIP[1]+";Archivo_"+fraseN[2]+";Estadisticas.txt";
 			File file = new File(ruta2); 
 			if(file.exists()){
+				BufferedReader br = new BufferedReader(new FileReader(ruta2));
+				String nParq = br.readLine();
+				String nTotal = br.readLine();
+				String tProm = br.readLine();
 				
+				String[] nParq2 = nParq.split(":");
+				String[] nTotal2 = nTotal.split(":");
+				String[] tProm2 = tProm.split(":");
+				
+				br.close();
+				
+				int nPaquetes = Integer.parseInt(nParq2[1]);
+				double promAnterior = Double.parseDouble(tProm2[1]);
+				Long nuevoT = mseg - miliSegundos;
+				double nuevoTiempo = (double) (nuevoT*1);
+				
+				PrintWriter pw2 = new PrintWriter(new FileWriter(ruta2));
+				pw2.println("Numero parquetes recibidos:"+(nPaquetes+1));
+				pw2.println("Total Paquetes:" + nTotal2[1]);
+				pw2.println("Tiempo Promedio (ms):" + (((nPaquetes*promAnterior)+nuevoTiempo)/(nPaquetes+1)) );
+				pw2.close();
 			}
 			else{
 				PrintWriter pw2 = new PrintWriter(new FileWriter(ruta2));
-				pw2.println("Numero parquetes:" + 1 + "; Total Paquetes:" + fraseN[1] + "; Tiempo Promedio:" + (mseg - miliSegundos) + "(ms)");
+				pw2.println("Numero parquetes recibidos:1");
+				pw2.println("Total Paquetes:" + fraseN[1]);
+				pw2.println("Tiempo Promedio (ms):" + (mseg - miliSegundos));
 				pw2.close();
 			}
 			

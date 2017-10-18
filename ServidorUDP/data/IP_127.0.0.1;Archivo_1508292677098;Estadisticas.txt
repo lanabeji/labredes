@@ -1,0 +1,3 @@
+Numero parquetes recibidos:5
+Total Paquetes:5
+Tiempo Promedio (ms):42.6

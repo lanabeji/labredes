@@ -1,0 +1,5 @@
+DireccionIP: /127.0.0.1, Archivo: 1508292677098, Paquete numero 1 de un total de 5, Tiempo: 36 ms
+DireccionIP: /127.0.0.1, Archivo: 1508292677098, Paquete numero 2 de un total de 5, Tiempo: 39 ms
+DireccionIP: /127.0.0.1, Archivo: 1508292677098, Paquete numero 3 de un total de 5, Tiempo: 44 ms
+DireccionIP: /127.0.0.1, Archivo: 1508292677098, Paquete numero 4 de un total de 5, Tiempo: 46 ms
+DireccionIP: /127.0.0.1, Archivo: 1508292677098, Paquete numero 5 de un total de 5, Tiempo: 48 ms
