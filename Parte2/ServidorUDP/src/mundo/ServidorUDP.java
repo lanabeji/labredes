@@ -18,6 +18,7 @@ import java.sql.Timestamp;
 public class ServidorUDP {
 	
 	public static void main(String[] args) throws Exception {
+		System.out.println("**INICIO SERVIDOR**");
 		inicio();
 	}
 	
@@ -75,29 +76,35 @@ public class ServidorUDP {
 			if(file.exists()){
 				BufferedReader br = new BufferedReader(new FileReader(ruta2));
 				String nParq = br.readLine();
+				String nPaqFalt = br.readLine();
 				String nTotal = br.readLine();
 				String tProm = br.readLine();
 				
 				String[] nParq2 = nParq.split(":");
+				String[] nPaqFalt2 = nPaqFalt.split(":");
 				String[] nTotal2 = nTotal.split(":");
 				String[] tProm2 = tProm.split(":");
 				
 				br.close();
 				
 				int nPaquetes = Integer.parseInt(nParq2[1]);
+				int falt = Integer.parseInt(nPaqFalt2[1]); 
 				double promAnterior = Double.parseDouble(tProm2[1]);
 				Long nuevoT = mseg - miliSegundos;
 				double nuevoTiempo = (double) (nuevoT*1);
 				
 				PrintWriter pw2 = new PrintWriter(new FileWriter(ruta2));
 				pw2.println("Numero parquetes recibidos:"+(nPaquetes+1));
+				pw2.println("Numero parquetes faltantes:"+(falt-1));
 				pw2.println("Total Paquetes:" + nTotal2[1]);
 				pw2.println("Tiempo Promedio (ms):" + (((nPaquetes*promAnterior)+nuevoTiempo)/(nPaquetes+1)) );
 				pw2.close();
 			}
 			else{
 				PrintWriter pw2 = new PrintWriter(new FileWriter(ruta2));
+				int total = Integer.parseInt(fraseN[1]);
 				pw2.println("Numero parquetes recibidos:1");
+				pw2.println("Numero parquetes faltantes:"+(total-1));
 				pw2.println("Total Paquetes:" + fraseN[1]);
 				pw2.println("Tiempo Promedio (ms):" + (mseg - miliSegundos));
 				pw2.close();
