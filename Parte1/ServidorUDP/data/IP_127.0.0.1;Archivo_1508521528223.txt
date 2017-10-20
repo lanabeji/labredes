@@ -1,0 +1,10 @@
+DireccionIP: /127.0.0.1, Archivo: 1508521528223, Paquete numero 1 de un total de 10, Tiempo: 269 ms
+DireccionIP: /127.0.0.1, Archivo: 1508521528223, Paquete numero 2 de un total de 10, Tiempo: 64 ms
+DireccionIP: /127.0.0.1, Archivo: 1508521528223, Paquete numero 3 de un total de 10, Tiempo: 105 ms
+DireccionIP: /127.0.0.1, Archivo: 1508521528223, Paquete numero 4 de un total de 10, Tiempo: 108 ms
+DireccionIP: /127.0.0.1, Archivo: 1508521528223, Paquete numero 5 de un total de 10, Tiempo: 111 ms
+DireccionIP: /127.0.0.1, Archivo: 1508521528223, Paquete numero 6 de un total de 10, Tiempo: 116 ms
+DireccionIP: /127.0.0.1, Archivo: 1508521528223, Paquete numero 7 de un total de 10, Tiempo: 119 ms
+DireccionIP: /127.0.0.1, Archivo: 1508521528223, Paquete numero 8 de un total de 10, Tiempo: 126 ms
+DireccionIP: /127.0.0.1, Archivo: 1508521528223, Paquete numero 9 de un total de 10, Tiempo: 134 ms
+DireccionIP: /127.0.0.1, Archivo: 1508521528223, Paquete numero 10 de un total de 10, Tiempo: 137 ms
