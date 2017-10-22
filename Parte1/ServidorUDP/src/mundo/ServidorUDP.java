@@ -19,12 +19,13 @@ public class ServidorUDP {
 	
 	public static void main(String[] args) throws Exception {
 		System.out.println("**INICIO SERVIDOR**");
-		inicio();
+		inicio(args[0]);
 	}
 	
-	public static void inicio() throws Exception{
+	public static void inicio(String puerto) throws Exception{
 		
-		DatagramSocket socketServidor = new DatagramSocket(9999);
+		int port = Integer.parseInt(puerto);
+		DatagramSocket socketServidor = new DatagramSocket(port);
 		
 		byte[] recibirDatos = new byte[1024];
 		byte[] enviarDatos = new byte[1024];

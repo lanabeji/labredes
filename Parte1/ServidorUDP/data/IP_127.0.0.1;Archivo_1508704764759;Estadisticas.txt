@@ -1,0 +1,4 @@
+Numero parquetes recibidos:10
+Numero parquetes faltantes:0
+Total Paquetes:10
+Tiempo Promedio (ms):159.3
