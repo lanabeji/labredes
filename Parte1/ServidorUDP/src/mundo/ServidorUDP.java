@@ -66,13 +66,13 @@ public class ServidorUDP {
 			
 			String dirIP = ""+DireccionIP;
 			String[] nDirIP = dirIP.split("/");
-			String ruta = "./data/IP_"+nDirIP[1]+";Archivo_"+fraseN[2]+".txt";
+			String ruta = "/home/ec2-user/dataUDP/IP_"+nDirIP[1]+";Archivo_"+fraseN[2]+".txt";
 									
 			PrintWriter pw = new PrintWriter(new FileWriter(ruta, true));
 			pw.println(arch);
 			pw.close();
 			
-			String ruta2 = "./data/IP_"+nDirIP[1]+";Archivo_"+fraseN[2]+";Estadisticas.txt";
+			String ruta2 = "/home/ec2-user/dataUDP/IP_"+nDirIP[1]+";Archivo_"+fraseN[2]+";Estadisticas.txt";
 			File file = new File(ruta2); 
 			if(file.exists()){
 				BufferedReader br = new BufferedReader(new FileReader(ruta2));
