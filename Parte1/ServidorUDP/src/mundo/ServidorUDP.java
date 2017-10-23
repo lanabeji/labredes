@@ -67,6 +67,7 @@ public class ServidorUDP {
 			String dirIP = ""+DireccionIP;
 			String[] nDirIP = dirIP.split("/");
 			String ruta = "/home/ec2-user/dataUDP/IP_"+nDirIP[1]+";Archivo_"+fraseN[2]+".txt";
+			System.out.println(ruta);
 									
 			PrintWriter pw = new PrintWriter(new FileWriter(ruta, true));
 			pw.println(arch);
